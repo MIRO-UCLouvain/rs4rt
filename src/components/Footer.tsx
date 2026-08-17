@@ -1,4 +1,4 @@
-import { Mail, Send, Code } from "lucide-react";
+import { Mail, Send, Code, Github } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/rs4rt-logo.svg";
@@ -71,14 +71,27 @@ const Footer = () => {
             />
           </div>
 
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Mail className="h-4 w-4" />
-            <a
-              href="mailto:contact@rs4rt.org"
-              className="transition-colors hover:text-primary"
-            >
-              contact@rs4rt.org
-            </a>
+          <div className="flex flex-col items-center gap-3 text-sm text-muted-foreground md:flex-row md:gap-6">
+            <div className="flex items-center gap-2">
+              <Mail className="h-4 w-4" />
+              <a
+                href="mailto:contact@rs4rt.org"
+                className="transition-colors hover:text-primary"
+              >
+                contact@rs4rt.org
+              </a>
+            </div>
+            <div className="flex items-center gap-2">
+              <Github className="h-4 w-4" />
+              <a
+                href="https://github.com/MIRO-UCLouvain/RS4RT_website"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-primary"
+              >
+                GitHub
+              </a>
+            </div>
           </div>
 
           <p className="text-sm text-muted-foreground">
