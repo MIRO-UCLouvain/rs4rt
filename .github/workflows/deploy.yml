@@ -1,0 +1,53 @@
+# .github/workflows/deploy.yml
+#
+# Builds the Vite site on every push to main and force-pushes the contents
+# of dist/ to the gh-pages branch — the same thing `npm run deploy` does
+# locally, so both methods stay interchangeable.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]        # rename if the default branch is "master"
+  workflow_dispatch:         # adds a "Run workflow" button in the Actions tab
+
+# Only one deploy at a time; a newer push cancels an in-flight older one.
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write        # required to push the gh-pages branch
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # `npm ci` is reproducible but requires package-lock.json to be committed.
+      # If the build fails with "lock file not found", swap this for:
+      #   run: npm install
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          # Uncomment and set this ONLY if you are not using a public/CNAME
+          # file. Do not use both — they will fight over the branch.
+          # cname: your-domain.org
