@@ -95,7 +95,7 @@ const Footer = () => {
           </div>
 
           <p className="text-sm text-muted-foreground">
-            © 2025 RS4RT. All rights reserved.
+            © 2026 RS4RT. All rights reserved.
           </p>
         </div>
       </div>
