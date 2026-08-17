@@ -1,4 +1,4 @@
-import { Mail, Send, Code } from "lucide-react";
+import { Mail, Send, Code, Github } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/rs4rt-logo.svg";
